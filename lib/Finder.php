@@ -76,6 +76,8 @@ class Finder
             throw new NetworkException($response->getException());
         }
         $json = json_decode($response->getBody());
+	
+	$results = [];
 
         foreach ($json->Items as $item) {
             $result = new FinderResult();
