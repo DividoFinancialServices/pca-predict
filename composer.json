@@ -1,5 +1,5 @@
 {
-  "name": "DividoFinancialServices/PCAPredict",
+  "name": "divido-financial-services/pca-predict",
   "type": "library",
   "require": {
     "php": ">=7",
