@@ -15,27 +15,27 @@ class FinderResult
     /**
      * @var string
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $type;
+    protected $type;
 
     /**
      * @var string
      */
-    private $text;
+    protected $text;
 
     /**
      * @var string
      */
-    private $highlight;
+    protected $highlight;
 
     /**
      * @var string
      */
-    private $description;
+    protected $description;
 
     /**
      * FinderResult constructor.

@@ -16,223 +16,223 @@ class RetrieveResult
      *
      * @var string
      */
-    private $id;
+    protected $id;
 
     /**
      *
      * @var string
      */
-    private $domesticId;
+    protected $domesticId;
 
     /**
      *
      * @var string
      */
-    private $language;
+    protected $language;
 
     /**
      *
      * @var string
      */
-    private $languageAlternatives;
+    protected $languageAlternatives;
 
     /**
      *
      * @var string
      */
-    private $department;
+    protected $department;
 
     /**
      *
      * @var string
      */
-    private $company;
+    protected $company;
 
     /**
      *
      * @var string
      */
-    private $subBuilding;
+    protected $subBuilding;
 
     /**
      *
      * @var string
      */
-    private $buildingNumber;
+    protected $buildingNumber;
 
     /**
      *
      * @var string
      */
-    private $buildingName;
+    protected $buildingName;
 
     /**
      *
      * @var string
      */
-    private $secondaryStreet;
+    protected $secondaryStreet;
 
     /**
      *
      * @var string
      */
-    private $street;
+    protected $street;
 
     /**
      *
      * @var string
      */
-    private $block;
+    protected $block;
 
     /**
      *
      * @var string
      */
-    private $neighbourhood;
+    protected $neighbourhood;
 
     /**
      *
      * @var string
      */
-    private $district;
+    protected $district;
 
     /**
      *
      * @var string
      */
-    private $city;
+    protected $city;
 
     /**
      *
      * @var string
      */
-    private $line1;
+    protected $line1;
 
     /**
      *
      * @var string
      */
-    private $line2;
+    protected $line2;
 
     /**
      *
      * @var string
      */
-    private $line3;
+    protected $line3;
 
     /**
      *
      * @var string
      */
-    private $line4;
+    protected $line4;
 
     /**
      *
      * @var string
      */
-    private $line5;
+    protected $line5;
 
     /**
      *
      * @var string
      */
-    private $adminAreaName;
+    protected $adminAreaName;
 
     /**
      *
      * @var string
      */
-    private $adminAreaCode;
+    protected $adminAreaCode;
 
     /**
      *
      * @var string
      */
-    private $province;
+    protected $province;
 
     /**
      *
      * @var string
      */
-    private $provinceName;
+    protected $provinceName;
 
     /**
      *
      * @var string
      */
-    private $provinceCode;
+    protected $provinceCode;
 
     /**
      *
      * @var string
      */
-    private $postalCode;
+    protected $postalCode;
 
     /**
      *
      * @var string
      */
-    private $countryName;
+    protected $countryName;
 
     /**
      *
      * @var string
      */
-    private $countryIso2;
+    protected $countryIso2;
 
     /**
      *
      * @var string
      */
-    private $countryIso3;
+    protected $countryIso3;
 
     /**
      *
      * @var string
      */
-    private $countryIsoNumber;
+    protected $countryIsoNumber;
 
     /**
      *
      * @var string
      */
-    private $sortingNumber1;
+    protected $sortingNumber1;
 
     /**
      *
      * @var string
      */
-    private $sortingNumber2;
+    protected $sortingNumber2;
 
     /**
      *
      * @var string
      */
-    private $barcode;
+    protected $barcode;
 
     /**
      *
      * @var string
      */
-    private $poBoxNumber;
+    protected $poBoxNumber;
 
     /**
      *
      * @var string
      */
-    private $label;
+    protected $label;
 
     /**
      *
      * @var string
      */
-    private $type;
+    protected $type;
 
     /**
      *
      * @var string
      */
-    private $dataLevel;
+    protected $dataLevel;
 
     /**
      * @return string
