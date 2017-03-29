@@ -8,20 +8,93 @@ A library for interfacing with the PCA Predict API (Find & Retrieve):
  
 ### Usage:
 
+#### Credentials
+
+Wrap your API key into Credentials class which can then be used in multiple PCA Predict API's.  
+
+The `Credentials` class takes on parameter, which is your API Key.
+
+```php
+use \DividoFinancialServices\PCAPredict\Credentials;
+
+$credentials = new Credentials('YOUR-API-KEY');
+```
+
+
 #### Finder
 
-The `Finder` API takes a fuzzy text string and matches it to one or more addresses.  By default the application will return up to eight matches, but this can be changed by using the FindArgs::setLimit() method.
+The `Finder` API takes a fuzzy text string and matches it to one or more geographic types. 
 
+To use the `Finder` API, first set up some `FinderArgs`.
+
+##### Finder Arguments.
+
+The `FinderArgs` class encapsulates the parameters used for searching the Finder API.
+
+```php
+use \DividoFinancialServices\PCAPredict\FinderArgs();
+$finderArgs = new FinderArgs();
+```
+ - Text (search query)
+        
+    - Sets the string to search for.
+    - **Required**
+
+    ```php
+    $finderArgs->setText("Interchange, Stables Market));
+    ```
+ 
+ - Limit results
+ 
+    - Sets the amount of results to return. 
+    - Default is 8.
+    - *Optional*
+
+    ```php
+    $finderArgs->setLimit(2));
+    ```
+
+ - Country filtering
+  
+    - Limits the results to certain countries. 
+    - Can be empty (to allow any country in results)
+    - Can be an array of 2-Letter country codes (e.g. GB)
+    - *Optional*
+        
+    ```php
+    $finderArgs->setCountries([
+        'GB',
+    ]);
+    ```
+
+- Result type filtering
+  
+    - Limits the results to certain result types
+    - Can be empty (to allow all result types)
+    - Can be an array of result types:
+        - Address
+        - Locality
+        - BuildingName
+        - Street
+    - **NB** Only `Address` results types can be fed into the `Retriever` API for more detailed information.
+    - *Optional*
+        
+    ```php
+    $finderArgs->setTypeFilter([
+        FinderArgs::FILTER_TYPE_ADDRESS,
+        FinderArgs::FILTER_TYPE_LOCALITY,
+    ]);
+    
+    // or indivudually
+
+    $finderArgs->addTypeFilter(FinderArgs::FILTER_TYPE_ADDRESS);
+    $finderArgs->addTypeFilter(FinderArgs::FILTER_TYPE_LOCALITY);
+    ```
+
+Using the Finder API with the Finder Arguments object:
 
 ```php
 <?php
-
-require_once('vendor/autoload.php');
-
-// Uses...
-use \DividoFinancialServices\PCAPredict\Credentials,
-    \DividoFinancialServices\PCAPredict\Finder,
-    \DividoFinancialServices\PCAPredict\FindArgs;
 
 // Create a credentials object (for use with both API's)
 $credentials = new Credentials('Your-API-Key-Here');
@@ -30,17 +103,11 @@ $credentials = new Credentials('Your-API-Key-Here');
 $finder = new Finder($credentials);
 
 // Create finder argumennts (search/query)
-$args = new FindArgs();
-$args->setText('Interchange, Stables Market');
-
-// Optionally filter for addresses only (exluding Locality or other result types)
-$args->addTypeFilter(FindArgs::FILTER_TYPE_ADDRESS);
-
-// Filtering can take multiple filters at once
-// $args->setTypeFilter([
-//  FindArgs::FILTER_TYPE_ADDRESS,
-//  FindArgs::FILTER_TYPE_LOCALITY,
-// ]);
+$args = new FinderArgs();
+$args->setText('Interchange, Stables Market')
+  ->setLimit(1)
+  ->setCountries(['GB',])
+  ->setTypeFilter([FinderArgs::FILTER_TYPE_ADDRESS,])
 
 // Search for address
 $results = $finder->find($args);
@@ -68,17 +135,10 @@ Array
 
 #### Retriever
 
-The `Retriever` API takes a PCA Predict address ID (as returned from a `Finder` call) and returns much more detailed information about the address.
-
+The `Retriever` API takes a PCA Predict Address ID (as returned from a `Finder` call) and returns much more detailed information about the address.
 
 ```php
 <?php
-
-require_once('vendor/autoload.php');
-
-// Uses...
-use \DividoFinancialServices\PCAPredict\Credentials,
-    \DividoFinancialServices\PCAPredict\Retriever;
 
 // Create a credentials object (for use with both API's)
 $credentials = new Credentials('Your-API-Key-Here');
@@ -87,7 +147,7 @@ $credentials = new Credentials('Your-API-Key-Here');
 $retriever = new Retriever($credentials);
 
 // Search for address
-$results = $retriever->retrieve('GB|RM|A|54205818');
+$results = $retriever->retrieve('GB|RM|A|54205818'); // This ID MUST be of type 'Address'. Other types will not work.
 
 // Dump result
 print_r($results);
