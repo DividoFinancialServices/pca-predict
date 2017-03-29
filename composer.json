@@ -1,5 +1,6 @@
 {
   "name": "divido-financial-services/pca-predict",
+  "description": "Small library which uses Finder/Retriever PCA Predict API",
   "type": "library",
   "require": {
     "php": ">=7",
