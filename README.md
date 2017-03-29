@@ -33,6 +33,15 @@ $finder = new Finder($credentials);
 $args = new FindArgs();
 $args->setText('Interchange, Stables Market');
 
+// Optionally filter for addresses only (exluding Locality or other result types)
+$args->addTypeFilter(FindArgs::FILTER_TYPE_ADDRESS);
+
+// Filtering can take multiple filters at once
+// $args->setTypeFilter([
+//  FindArgs::FILTER_TYPE_ADDRESS,
+//  FindArgs::FILTER_TYPE_LOCALITY,
+// ]);
+
 // Search for address
 $results = $finder->find($args);
 
