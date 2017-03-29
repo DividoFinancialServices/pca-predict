@@ -21,7 +21,7 @@ require_once('vendor/autoload.php');
 // Uses...
 use \DividoFinancialServices\PCAPredict\Credentials,
     \DividoFinancialServices\PCAPredict\Finder,
-    \DividoFinancialServices\PCAPredict\FindArgs;
+    \DividoFinancialServices\PCAPredict\FinderArgs;
 
 // Create a credentials object (for use with both API's)
 $credentials = new Credentials('Your-API-Key-Here');
@@ -30,7 +30,7 @@ $credentials = new Credentials('Your-API-Key-Here');
 $finder = new Finder($credentials);
 
 // Create finder argumennts (search/query)
-$args = new FindArgs();
+$args = new FinderArgs();
 $args->setText('Interchange, Stables Market');
 
 // Optionally filter for addresses only (exluding Locality or other result types)
