@@ -94,8 +94,6 @@ $finderArgs = new FinderArgs();
 Using the Finder API with the Finder Arguments object:
 
 ```php
-<?php
-
 // Create a credentials object (for use with both API's)
 $credentials = new Credentials('Your-API-Key-Here');
 
