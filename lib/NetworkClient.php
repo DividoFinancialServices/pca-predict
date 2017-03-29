@@ -63,7 +63,14 @@ class NetworkClient
 
         $request = new Request(
             $method,
-            $url . '?' . http_build_query(array_merge($query, ['Key' => urlencode($credentials->getApiKey()),])),
+            $url . '?' . http_build_query(
+                array_merge(
+                    $query,
+                    [
+                        'Key' => $credentials->getApiKey(),
+                    ]
+                ),null, "&", PHP_QUERY_RFC3986
+            ),
             $headers
         );
 

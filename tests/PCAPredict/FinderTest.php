@@ -61,5 +61,31 @@ class FinderTest extends \PHPUnit_Framework_TestCase
 
 
     }
+
+    public function testFindResults_FiltersResults()
+    {
+        $credentials = new Credentials('testApiKey');
+        $finder = new Finder($credentials);
+
+        $args = new FindArgs();
+        $args->setText('Interchange Stables Market');
+        $args->setTypeFilter([FindArgs::FILTER_TYPE_ADDRESS]);
+
+        // Mock network Client
+        $guzzleMock = $this->createMock(Client::class);
+
+        // Mock network response
+        $response = new Response(200, [], '{"Items":[{"Id":"GB|RM|A|54205818","Type":"Address","Text":"Interchange, The Stables Market Chalk Farm Road","Highlight":"0-11","Description":"London, NW1 8AH"},{"Id":"GB|RM|A|54205818","Type":"Street","Text":"Interchange, The Stables Market Chalk Farm Road","Highlight":"0-11","Description":"London, NW1 8AH"}]}');
+
+        $guzzleMock->method('send')
+            ->willReturn($response);
+
+        $finder->getNetworkClient()->setClient($guzzleMock);
+
+        $res = $finder->find($args);
+        self::assertCount(1, $res);
+
+
+    }
     
 }

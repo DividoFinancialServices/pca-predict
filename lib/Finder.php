@@ -87,7 +87,10 @@ class Finder
                 ->setHighlight($item->Highlight)
                 ->setDescription($item->Description);
 
-            $results[] = $result;
+            if (empty($findArgs->getTypeFilter()) || in_array($result->getType(), $findArgs->getTypeFilter())) {
+                $results[] = $result;
+            }
+
         }
 
         return $results;

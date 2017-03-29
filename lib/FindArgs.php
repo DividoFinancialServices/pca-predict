@@ -11,6 +11,17 @@ namespace DividoFinancialServices\PCAPredict;
  */
 class FindArgs
 {
+    /**
+     * Constants for the (un)enumerated Type
+     *
+     * The Web Service definition of `Type` inside the complex object `Capture_Interactive_Find_v1_00_Results`
+     *
+     */
+    const FILTER_TYPE_LOCALITY = "Locality";
+    const FILTER_TYPE_STREET = "Street";
+    const FILTER_TYPE_ADDRESS = "Address";
+    const FILTER_TYPE_BUILDING_NAME = "BuildingName";
+
 
     /**
      * The search term to find.
@@ -56,6 +67,13 @@ class FindArgs
      * @var string
      */
     private $language;
+
+    /**
+     * Types to be filtered from the search.
+     *
+     * @var string[]
+     */
+    private $typeFilter;
 
     public function __construct()
     {
@@ -177,17 +195,49 @@ class FindArgs
     }
 
     /**
+     * @return \string[]
+     */
+    public function getTypeFilter():  ?array
+    {
+        return $this->typeFilter;
+    }
+
+    /**
+     * @param \string[] $typeFilter
+     * @return FindArgs
+     */
+    public function setTypeFilter(array $typeFilter): ?FindArgs
+    {
+        $this->typeFilter = $typeFilter;
+        return $this;
+    }
+
+    /**
+     * @param string $typeFilter
+     * @return FindArgs
+     */
+    public function addTypeFilter(string $typeFilter): ?FindArgs
+    {
+        if (!is_array($this->typeFilter)) {
+            $this->typeFilter = [];
+        }
+
+        $this->typeFilter[] = $typeFilter;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getArgsAsArray()
     {
         return [
-            'Text' => urlencode($this->getText()),
-            'Container' => urlencode($this->getContainer()),
-            'Origin' => urlencode($this->getOrigin()),
-            'Countries' => urlencode(implode(',', $this->getCountries())),
-            'Limit' => urlencode((string)$this->getLimit()),
-            'Language' => urlencode($this->getLanguage()),
+            'Text' => $this->getText(),
+            'Container' => $this->getContainer(),
+            'Origin' => $this->getOrigin(),
+            'Countries' => implode(',', $this->getCountries()),
+            'Limit' => (string)$this->getLimit(),
+            'Language' => $this->getLanguage(),
         ];
     }
 
