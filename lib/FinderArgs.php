@@ -9,7 +9,7 @@ namespace DividoFinancialServices\PCAPredict;
  * @copyright (c) 2017, Divido
  * @package DividoFinancialServices\PCAPredict
  */
-class FindArgs
+class FinderArgs
 {
     /**
      * Constants for the (un)enumerated Type
@@ -96,9 +96,9 @@ class FindArgs
 
     /**
      * @param string $text
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setText(string $text): ?FindArgs
+    public function setText(string $text): ?FinderArgs
     {
         $this->text = $text;
         return $this;
@@ -114,9 +114,9 @@ class FindArgs
 
     /**
      * @param string $container
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setContainer(string $container): ?FindArgs
+    public function setContainer(string $container): ?FinderArgs
     {
         $this->container = $container;
         return $this;
@@ -132,9 +132,9 @@ class FindArgs
 
     /**
      * @param string $origin
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setOrigin(string $origin): ?FindArgs
+    public function setOrigin(string $origin): ?FinderArgs
     {
         $this->origin = $origin;
         return $this;
@@ -150,9 +150,9 @@ class FindArgs
 
     /**
      * @param \string[] $countries
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setCountries(array $countries): ?FindArgs
+    public function setCountries(array $countries): ?FinderArgs
     {
         $this->countries = $countries;
         return $this;
@@ -168,9 +168,9 @@ class FindArgs
 
     /**
      * @param int $limit
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setLimit(int $limit): ?FindArgs
+    public function setLimit(int $limit): ?FinderArgs
     {
         $this->limit = $limit;
         return $this;
@@ -186,9 +186,9 @@ class FindArgs
 
     /**
      * @param string $language
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setLanguage(string $language): ?FindArgs
+    public function setLanguage(string $language): ?FinderArgs
     {
         $this->language = $language;
         return $this;
@@ -204,9 +204,9 @@ class FindArgs
 
     /**
      * @param \string[] $typeFilter
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function setTypeFilter(array $typeFilter): ?FindArgs
+    public function setTypeFilter(array $typeFilter): ?FinderArgs
     {
         $this->typeFilter = $typeFilter;
         return $this;
@@ -214,9 +214,9 @@ class FindArgs
 
     /**
      * @param string $typeFilter
-     * @return FindArgs
+     * @return FinderArgs
      */
-    public function addTypeFilter(string $typeFilter): ?FindArgs
+    public function addTypeFilter(string $typeFilter): ?FinderArgs
     {
         if (!is_array($this->typeFilter)) {
             $this->typeFilter = [];

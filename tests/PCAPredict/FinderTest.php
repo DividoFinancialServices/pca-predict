@@ -12,7 +12,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
 
-        $args = new FindArgs();
+        $args = new FinderArgs();
         $args->setText('Interchange Stables Market');
 
         // Mock network Client
@@ -42,7 +42,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
 
-        $args = new FindArgs();
+        $args = new FinderArgs();
         $args->setText('Interchange Stables Market');
 
         // Mock network Client
@@ -67,9 +67,9 @@ class FinderTest extends \PHPUnit_Framework_TestCase
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
 
-        $args = new FindArgs();
+        $args = new FinderArgs();
         $args->setText('Interchange Stables Market');
-        $args->setTypeFilter([FindArgs::FILTER_TYPE_ADDRESS]);
+        $args->setTypeFilter([FinderArgs::FILTER_TYPE_ADDRESS]);
 
         // Mock network Client
         $guzzleMock = $this->createMock(Client::class);

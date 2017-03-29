@@ -56,13 +56,13 @@ class Finder
     /**
      * Query PCA Predict API to look for address match.
      *
-     * @param FindArgs $findArgs
+     * @param FinderArgs $findArgs
      *
      * @return FinderResult[]
      *
      * @throws NetworkException
      */
-    public function find(FindArgs $findArgs)
+    public function find(FinderArgs $findArgs)
     {
 
         $response = $this->networkClient->request(
