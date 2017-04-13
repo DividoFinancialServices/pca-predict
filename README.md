@@ -41,7 +41,7 @@ $finderArgs = new FinderArgs();
     - **Required**
 
     ```php
-    $finderArgs->setText("Interchange, Stables Market));
+    $finderArgs->setText("Interchange, Stables Market");
     ```
  
  - Limit results
