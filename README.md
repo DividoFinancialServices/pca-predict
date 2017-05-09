@@ -1,12 +1,24 @@
 # PCA Predict
 
-A library for interfacing with the PCA Predict API (Find & Retrieve):
+A library for interfacing with PCA Predict APIs
 
- - Find: http://www.pcapredict.com/support/webservice/capture/interactive/find/1/
- - Retrieve: http://www.pcapredict.com/support/webservice/capture/interactive/retrieve/1/
+ - Address Find: http://www.pcapredict.com/support/webservice/capture/interactive/find/1/
+ - Address Retrieve: http://www.pcapredict.com/support/webservice/capture/interactive/retrieve/1/
+ - Bank account validation: https://www.pcapredict.com/support/webservice/bankaccountvalidation/interactive/validate/2/
+ - Email address validation: http://www.pcapredict.com/support/webservice/emailvalidation/interactive/validate/2/
+ - Phone number validation: http://www.pcapredict.com/support/webservice/phonenumbervalidation/interactive/validate/2.1/
  
+# Table of Contents  
+- [Credentials](#credentials)
+- [Email Address Validation](#email-validation)
+- [Phone Number Validation](#phone-validation)
+- [Bank Account Validation](#bank-account-validation)
+- [Address Finder](#address-finder)
+- [Address Retriever](#address-retriever)
  
 ### Usage:
+
+<a name="credentials">
 
 #### Credentials
 
@@ -20,14 +32,154 @@ use \DividoFinancialServices\PCAPredict\Credentials;
 $credentials = new Credentials('YOUR-API-KEY');
 ```
 
+<a name="email-validation">
 
-#### Finder
+#### Email Validation
+
+The `EmailValidation` API takes an email address and validates it, returning some meta information.
+
+```php
+<?php
+
+// Create a credentials object (for use with both API's)
+$credentials = new Credentials('Your-API-Key-Here');
+
+// Create an email validator
+$validator = new EmailValidator($credentials);
+
+// Create arguments object
+$args = new EmailValidatorArgs(); // Default timeout is 5 seconds, can be overridden
+$args->setEmailAddress('test@test.com');
+
+// Validate email address
+$results = $validator->validate($args);
+
+// Dump result
+print_r($results);
+```
+
+```bash
+# output 
+DividoFinancialServices\PCAPredict\EmailValidatorResult Object
+(
+    [responseCode:private] => Valid_CatchAll
+    [responseMessage:private] => Mail is routable to the domain but account could not be validated
+    [emailAddress:private] => test@test.com
+    [userAccount:private] => test
+    [domain:private] => test.com
+    [isDisposableOrTemporary:private] => true
+    [isComplainerOrFraudRisk:private] => true
+    [duration:private] => 0.777
+)
+```
+<a name="phone-validation">
+
+#### Phone Number Validation
+
+The `PhoneNumberValidation` API takes an phone number and validates it, returning some meta information.
+
+```php
+<?php
+
+// Create a credentials object (for use with both API's)
+$credentials = new Credentials('Your-API-Key-Here');
+
+// Create an phone number validator
+$validator = new PhoneValidator($credentials);
+
+// Create arguments object
+$args = new PhoneValidatorArgs(); 
+$args->setPhoneNumber('+447515123456');
+
+// If the phone number is in local format, then we should specify country code too. e.g.
+$args->setPhoneNumber('07515123456');
+$args->setCountryCode('GB');
+
+// Validate phone number
+$results = $validator->validate($args);
+
+// Dump result
+print_r($results);
+```
+
+```bash
+# output 
+DividoFinancialServices\PCAPredict\PhoneValidatorResult Object
+(
+    [phoneNumber:private] => +447515123456
+    [validationSucceeded:private] => 1
+    [isValid:private] => Yes
+    [networkCode:private] => 10
+    [networkName:private] => Telefonica UK
+    [networkCountry:private] => GB
+    [nationalFormat:private] => 07515 123456
+    [countryPrefix:private] => 44
+    [numberType:private] => Mobile
+)
+```
+
+<a name="bank-account-validation">
+
+#### Bank Account Validation
+
+The `BankAccountValidation` API takes a bank account number and sort code and validates it, returning additional metadata.
+
+```php
+<?php
+
+// Create a credentials object (for use with both API's)
+$credentials = new Credentials('Your-API-Key-Here');
+
+// Create an bank accoujnt validator
+$validator = new BankAccountValidator($credentials);
+
+// Create arguments object
+$args = new BankAccountValidatorArgs(); 
+$args->setAccountNumber('12345678');
+$args->setSortCode('00-00-99');
+
+// Validate bank details
+$results = $validator->validate($args);
+
+// Dump result
+print_r($results);
+```
+
+```bash
+# output 
+DividoFinancialServices\PCAPredict\BankAccountValidatorResult Object
+(
+    [isCorrect:private] => 1
+    [isDirectDebitCapable:private] => 1
+    [statusInformation:private] => CautiousOK
+    [correctedSortCode:private] => 000099
+    [correctedAccountNumber:private] => 12345678
+    [iban:private] => GB27NWBK00009912345678
+    [bank:private] => TEST BANK PLC PLC
+    [bankBic:private] => NWBKGB21
+    [branch:private] => Worcester
+    [branchBic:private] => 18R
+    [contactAddressLine1:private] => 2 High Street
+    [contactAddressLine2:private] => Smallville
+    [contactPostTown:private] => Worcester
+    [contactPostcode:private] => WR2 6NJ
+    [contactPhone:private] => 01234 456789
+    [contactFax:private] => 
+    [fasterPaymentsSupported:private] => 
+    [chapsSupported:private] => 1
+)
+
+```
+
+<a name="address-finder">
+
+#### Address Finder
 
 The `Finder` API takes a fuzzy text string and matches it to one or more geographic types. 
 
 To use the `Finder` API, first set up some `FinderArgs`.
 
-##### Finder Arguments.
+##### Address Finder Arguments.
 
 The `FinderArgs` class encapsulates the parameters used for searching the Finder API.
 
@@ -130,8 +282,9 @@ Array
 )
 
 ```
+<a name="address-retriever">
 
-#### Retriever
+#### Address Retriever
 
 The `Retriever` API takes a PCA Predict Address ID (as returned from a `Finder` call) and returns much more detailed information about the address.
 
@@ -199,6 +352,7 @@ UNITED KINGDOM
     [dataLevel:protected] => Premise
 )
 ```
+
 
 ### Tests
 
