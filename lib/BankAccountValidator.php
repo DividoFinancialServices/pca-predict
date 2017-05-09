@@ -49,7 +49,10 @@ class BankAccountValidator
     /**
      * Query PCA Predict API to validate bank account number and sort code
      *
+     * @param BankAccountValidatorArgs $bankAccountValidatorArgs
+     * @return BankAccountValidatorResult
      * @throws NetworkException
+     * @throws PcaResponseException
      */
     public function validate(BankAccountValidatorArgs $bankAccountValidatorArgs)
     {
@@ -66,6 +69,10 @@ class BankAccountValidator
         }
 
         $json = json_decode($response->getBody());
+
+        if (property_exists($json[0], 'Error')) {
+            throw new PcaResponseException($json[0]->Error, $json[0]->Description);
+        }
 
         $result = new BankAccountValidatorResult();
 	    $result->setIban($json[0]->IBAN)
@@ -90,7 +97,6 @@ class BankAccountValidator
 	    return $result;
 
     }
-
 
 }
 

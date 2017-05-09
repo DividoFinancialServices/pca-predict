@@ -67,6 +67,10 @@ class PhoneValidator
 
         $json = json_decode($response->getBody());
 
+        if (property_exists($json[0], 'Error')) {
+            throw new PcaResponseException($json[0]->Error, $json[0]->Description);
+        }
+
         $result = new PhoneValidatorResult();
 	    $result->setPhoneNumber($json[0]->PhoneNumber)
             ->setCountryPrefix((int)$json[0]->CountryPrefix)
