@@ -51,7 +51,7 @@ class PhoneValidatorArgs
     /**
      * @return string
      */
-    public function getCountryCode(): string
+    public function getCountryCode(): ?string
     {
         return $this->countryCode;
     }
