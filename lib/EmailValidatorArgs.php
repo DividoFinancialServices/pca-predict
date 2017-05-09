@@ -27,7 +27,7 @@ class EmailValidatorArgs
 
     public function __construct()
     {
-        $this->setTimeout(5000);
+        $this->setTimeout(5);
     }
 
     /**
@@ -74,7 +74,7 @@ class EmailValidatorArgs
     {
         return [
             'Email' => $this->getEmailAddress(),
-            'Timeout' => $this->getTimeout(),
+            'Timeout' => $this->getTimeout() * 1000,
         ];
     }
 
