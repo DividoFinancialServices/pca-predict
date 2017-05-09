@@ -3,15 +3,15 @@
 namespace DividoFinancialServices\PCAPredict;
 
 /**
- * Class Finder
+ * Class PhoneValidator
  *
- * Calls the PCA Predict API to find an address (fuzzy matching)
+ * Calls the PCA Predict Phone Validation API to validate a phone number
  *
  * @author Neil McGibbon <neil.mcgibbon@divido.com>
  * @copyright (c) 2017, Divido
  * @package DividoFinancialServices\PCAPredict
  */
-class Finder
+class PhoneValidator
 {
 
     /**
@@ -47,46 +47,38 @@ class Finder
     }
 
     /**
-     * Query PCA Predict API to look for address match.
-     *
-     * @param FinderArgs $findArgs
-     *
-     * @return FinderResult[]
+     * Query PCA Predict API to validate phone number
      *
      * @throws NetworkException
      */
-    public function find(FinderArgs $findArgs)
+    public function validate(PhoneValidatorArgs $phoneValidatorArgs)
     {
 
         $response = $this->networkClient->request(
-            PcaPredictUrls::ADDRESS_FINDER,
+            PcaPredictUrls::PHONE_VALIDATION,
             $this->credentials,
-            $findArgs->getArgsAsArray(),
+            $phoneValidatorArgs->getArgsAsArray(),
             'get', [], null
         );
 
         if ($response->getState() !== NetworkResponse::STATE_SUCCESS) {
             throw new NetworkException($response->getException());
         }
+
         $json = json_decode($response->getBody());
-	
-	$results = [];
 
-        foreach ($json->Items as $item) {
-            $result = new FinderResult();
-            $result->setId($item->Id)
-                ->setType($item->Type)
-                ->setText($item->Text)
-                ->setHighlight($item->Highlight)
-                ->setDescription($item->Description);
+        $result = new PhoneValidatorResult();
+	    $result->setPhoneNumber($json[0]->PhoneNumber)
+            ->setCountryPrefix((int)$json[0]->CountryPrefix)
+            ->setIsValid($json[0]->IsValid)
+            ->setNationalFormat($json[0]->NationalFormat)
+            ->setNetworkCode($json[0]->NetworkCode)
+            ->setNetworkCountry($json[0]->NetworkCountry)
+            ->setNetworkName($json[0]->NetworkName)
+            ->setNumberType($json[0]->NumberType)
+            ->setValidationSucceeded($json[0]->ValidationSucceeded == "True" ? true : false);
 
-            if (empty($findArgs->getTypeFilter()) || in_array($result->getType(), $findArgs->getTypeFilter())) {
-                $results[] = $result;
-            }
-
-        }
-
-        return $results;
+        return $result;
 
     }
 

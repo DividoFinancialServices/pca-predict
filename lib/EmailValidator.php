@@ -3,15 +3,15 @@
 namespace DividoFinancialServices\PCAPredict;
 
 /**
- * Class Finder
+ * Class EmailValidator
  *
- * Calls the PCA Predict API to find an address (fuzzy matching)
+ * Calls the PCA Predict Email Validation API to validate an email address
  *
  * @author Neil McGibbon <neil.mcgibbon@divido.com>
  * @copyright (c) 2017, Divido
  * @package DividoFinancialServices\PCAPredict
  */
-class Finder
+class EmailValidator
 {
 
     /**
@@ -47,21 +47,17 @@ class Finder
     }
 
     /**
-     * Query PCA Predict API to look for address match.
-     *
-     * @param FinderArgs $findArgs
-     *
-     * @return FinderResult[]
+     * Query PCA Predict API to validate email address
      *
      * @throws NetworkException
      */
-    public function find(FinderArgs $findArgs)
+    public function validate(EmailValidatorArgs $emailValidatorArgs)
     {
 
         $response = $this->networkClient->request(
-            PcaPredictUrls::ADDRESS_FINDER,
+            PcaPredictUrls::EMAIL_VALIDATION,
             $this->credentials,
-            $findArgs->getArgsAsArray(),
+            $emailValidatorArgs->getArgsAsArray(),
             'get', [], null
         );
 
@@ -70,23 +66,17 @@ class Finder
         }
         $json = json_decode($response->getBody());
 	
-	$results = [];
+	    $result = new EmailValidatorResult();
+	    $result->setEmailAddress($json[0]->EmailAddress)
+            ->setDomain($json[0]->Domain)
+            ->setDuration((float)$json[0]->Duration)
+            ->setIsComplainerOrFraudRisk($json[0]->IsComplainerOrFraudRisk == "True" ? true : false)
+            ->setIsDisposableOrTemporary($json[0]->IsDisposableOrTemporary == "True" ? true : false)
+            ->setResponseCode($json[0]->ResponseCode)
+            ->setResponseMessage($json[0]->ResponseMessage)
+            ->setUserAccount($json[0]->UserAccount);
 
-        foreach ($json->Items as $item) {
-            $result = new FinderResult();
-            $result->setId($item->Id)
-                ->setType($item->Type)
-                ->setText($item->Text)
-                ->setHighlight($item->Highlight)
-                ->setDescription($item->Description);
-
-            if (empty($findArgs->getTypeFilter()) || in_array($result->getType(), $findArgs->getTypeFilter())) {
-                $results[] = $result;
-            }
-
-        }
-
-        return $results;
+	    return $result;
 
     }
 

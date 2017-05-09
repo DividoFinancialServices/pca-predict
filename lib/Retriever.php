@@ -13,13 +13,6 @@ class Retriever
 {
 
     /**
-     * The base URL for Secure HTTPS requests to PCA Predict web services.
-     *
-     * @const string
-     */
-    const HTTPS_BASE_URL = 'https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/v1.00/json3ex.ws';
-
-    /**
      * PCA Predict API credential(s)
      *
      * @var Credentials
@@ -62,7 +55,7 @@ class Retriever
     {
 
         $response = $this->networkClient->request(
-            self::HTTPS_BASE_URL ,
+            PcaPredictUrls::ADDRESS_RETRIEVER,
             $this->credentials,
             ['Id' => $id, ],
             'get', [], null
