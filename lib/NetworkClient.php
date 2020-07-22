@@ -62,7 +62,7 @@ class NetworkClient
                     [
                         'Key' => $credentials->getApiKey(),
                     ]
-                ),null, "&", PHP_QUERY_RFC3986
+                ),'', "&", PHP_QUERY_RFC3986
             ),
             $headers
         );

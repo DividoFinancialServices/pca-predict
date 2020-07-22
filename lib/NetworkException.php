@@ -15,6 +15,6 @@ class NetworkException extends \Exception
 {
     public function __construct(Exception $previous)
     {
-        parent::__construct('PCA Predict network exception.', '1000', $previous);
+        parent::__construct('PCA Predict network exception.', 1000, $previous);
     }
 }
