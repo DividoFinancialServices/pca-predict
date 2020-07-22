@@ -33,8 +33,7 @@ class NetworkClient
      */
     private function getClient()
     {
-        if (!$this->client)
-        {
+        if (!$this->client instanceof Client) {
             $this->client = new Client();
         }
 
@@ -47,7 +46,7 @@ class NetworkClient
      * @param array $query
      * @param string $method
      * @param array $headers
-     * @param null $payload
+     * @param mixed $payload
      * @return NetworkResponse
      * @internal param string $apiKey
      */
