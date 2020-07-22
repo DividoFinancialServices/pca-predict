@@ -2,6 +2,7 @@
 
 namespace Divido\PCAPredict;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
@@ -90,7 +91,7 @@ class NetworkClient
                 ->setException($e)
                 ->setState(NetworkResponse::STATE_FAILED)
                 ->setResponseHeaders($e->getResponse()->getHeaders());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $networkResponse->setException($e)
                 ->setState(NetworkResponse::STATE_ERROR);
         }
@@ -108,7 +109,7 @@ class NetworkClient
             && count($json->Items) === 1
             && property_exists($json->Items[0], "Error"))
        {
-           $exception = new \Exception(json_encode($json->Items[0]));
+           $exception = new Exception(json_encode($json->Items[0], JSON_THROW_ON_ERROR));
            $networkResponse->setState(NetworkResponse::STATE_FAILED)
                ->setException($exception);
        }
