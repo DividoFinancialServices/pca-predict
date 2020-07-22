@@ -61,7 +61,7 @@ class NetworkResponse
      * @param int $httpStatusCode
      * @return NetworkResponse
      */
-    public function setHttpStatusCode(int $httpStatusCode): ?NetworkResponse
+    public function setHttpStatusCode(int $httpStatusCode): NetworkResponse
     {
         $this->httpStatusCode = $httpStatusCode;
         return $this;
@@ -79,7 +79,7 @@ class NetworkResponse
      * @param array<string, mixed> $responseHeaders
      * @return NetworkResponse
      */
-    public function setResponseHeaders(array $responseHeaders): ?NetworkResponse
+    public function setResponseHeaders(array $responseHeaders): NetworkResponse
     {
         $this->responseHeaders = $responseHeaders;
         return $this;
@@ -97,7 +97,7 @@ class NetworkResponse
      * @param string $body
      * @return NetworkResponse
      */
-    public function setBody(string $body): ?NetworkResponse
+    public function setBody(string $body): NetworkResponse
     {
         $this->body = $body;
         return $this;
@@ -115,7 +115,7 @@ class NetworkResponse
      * @param string $state
      * @return NetworkResponse
      */
-    public function setState(string $state): ?NetworkResponse
+    public function setState(string $state): NetworkResponse
     {
         $this->state = $state;
         return $this;
@@ -133,7 +133,7 @@ class NetworkResponse
      * @param Exception $exception
      * @return NetworkResponse
      */
-    public function setException(Exception $exception): ?NetworkResponse
+    public function setException(Exception $exception): NetworkResponse
     {
         $this->exception = $exception;
         return $this;

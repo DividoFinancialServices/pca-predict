@@ -72,7 +72,7 @@ class EmailValidatorResult
      * @param string $responseCode
      * @return EmailValidatorResult
      */
-    public function setResponseCode(string $responseCode): ?EmailValidatorResult
+    public function setResponseCode(string $responseCode): EmailValidatorResult
     {
         $this->responseCode = $responseCode;
         return $this;
@@ -90,7 +90,7 @@ class EmailValidatorResult
      * @param string $responseMessage
      * @return EmailValidatorResult
      */
-    public function setResponseMessage(string $responseMessage): ?EmailValidatorResult
+    public function setResponseMessage(string $responseMessage): EmailValidatorResult
     {
         $this->responseMessage = $responseMessage;
         return $this;
@@ -108,7 +108,7 @@ class EmailValidatorResult
      * @param string $emailAddress
      * @return EmailValidatorResult
      */
-    public function setEmailAddress(string $emailAddress): ?EmailValidatorResult
+    public function setEmailAddress(string $emailAddress): EmailValidatorResult
     {
         $this->emailAddress = $emailAddress;
         return $this;
@@ -126,7 +126,7 @@ class EmailValidatorResult
      * @param string $userAccount
      * @return EmailValidatorResult
      */
-    public function setUserAccount(string $userAccount): ?EmailValidatorResult
+    public function setUserAccount(string $userAccount): EmailValidatorResult
     {
         $this->userAccount = $userAccount;
         return $this;
@@ -144,7 +144,7 @@ class EmailValidatorResult
      * @param string $domain
      * @return EmailValidatorResult
      */
-    public function setDomain(string $domain): ?EmailValidatorResult
+    public function setDomain(string $domain): EmailValidatorResult
     {
         $this->domain = $domain;
         return $this;
@@ -162,7 +162,7 @@ class EmailValidatorResult
      * @param bool $isDisposableOrTemporary
      * @return EmailValidatorResult
      */
-    public function setIsDisposableOrTemporary(bool $isDisposableOrTemporary): ?EmailValidatorResult
+    public function setIsDisposableOrTemporary(bool $isDisposableOrTemporary): EmailValidatorResult
     {
         $this->isDisposableOrTemporary = $isDisposableOrTemporary;
         return $this;
@@ -180,7 +180,7 @@ class EmailValidatorResult
      * @param bool $isComplainerOrFraudRisk
      * @return EmailValidatorResult
      */
-    public function setIsComplainerOrFraudRisk(bool $isComplainerOrFraudRisk): ?EmailValidatorResult
+    public function setIsComplainerOrFraudRisk(bool $isComplainerOrFraudRisk): EmailValidatorResult
     {
         $this->isComplainerOrFraudRisk = $isComplainerOrFraudRisk;
         return $this;
@@ -198,7 +198,7 @@ class EmailValidatorResult
      * @param float $duration
      * @return EmailValidatorResult
      */
-    public function setDuration(float $duration): ?EmailValidatorResult
+    public function setDuration(float $duration): EmailValidatorResult
     {
         $this->duration = $duration;
         return $this;
