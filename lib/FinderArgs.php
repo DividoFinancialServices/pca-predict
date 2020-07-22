@@ -77,12 +77,11 @@ class FinderArgs
     public function __construct()
     {
         // Setup known defaults
-        $this->setLimit(8)
-            ->setLanguage('en')
-            ->setContainer('')
-            ->setOrigin('')
-            ->setCountries([]);
-
+        $this->setLimit(8);
+        $this->setLanguage('en');
+        $this->setContainer('');
+        $this->setOrigin('');
+        $this->setCountries([]);
     }
 
     /**
@@ -226,9 +225,9 @@ class FinderArgs
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getArgsAsArray()
+    public function getArgsAsArray(): array
     {
         return [
             'Text' => $this->getText(),
@@ -239,9 +238,4 @@ class FinderArgs
             'Language' => $this->getLanguage(),
         ];
     }
-
-
-
 }
-
-

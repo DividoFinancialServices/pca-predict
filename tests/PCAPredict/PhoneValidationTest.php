@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class PhoneValidationTest extends TestCase
 {
-    public function testRetrieveResults_ReturnsResults()
+    public function testRetrieveResults_ReturnsResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $validator = new PhoneValidator($credentials);
@@ -44,12 +44,5 @@ class PhoneValidationTest extends TestCase
         self::assertSame('07751 123456', $res->getNationalFormat());
         self::assertSame(44, $res->getCountryPrefix());
         self::assertSame('Mobile', $res->getNumberType());
-
-
-
-
     }
-
-
-    
 }

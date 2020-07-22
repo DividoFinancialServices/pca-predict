@@ -12,9 +12,8 @@ use PHPUnit\Framework\TestCase;
 
 class BankAccountValidationTest extends TestCase
 {
-    public function testRetrieveResults_ReturnsResults()
+    public function testRetrieveResults_ReturnsResults(): void
     {
-
         $credentials = new Credentials('testApiKey');
         $validator = new BankAccountValidator($credentials);
 

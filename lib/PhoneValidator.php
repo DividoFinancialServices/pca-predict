@@ -2,6 +2,8 @@
 
 namespace Divido\PCAPredict;
 
+use JsonException;
+
 /**
  * Class PhoneValidator
  *
@@ -13,7 +15,6 @@ namespace Divido\PCAPredict;
  */
 class PhoneValidator
 {
-
     /**
      * PCA Predict API credential(s)
      *
@@ -25,7 +26,6 @@ class PhoneValidator
      * @var NetworkClient
      */
     private $networkClient;
-
 
     /**
      * Finder constructor.
@@ -41,7 +41,7 @@ class PhoneValidator
     /**
      * @return NetworkClient
      */
-    public function getNetworkClient()
+    public function getNetworkClient(): NetworkClient
     {
         return $this->networkClient;
     }
@@ -49,11 +49,14 @@ class PhoneValidator
     /**
      * Query PCA Predict API to validate phone number
      *
+     * @param PhoneValidatorArgs $phoneValidatorArgs
+     * @return PhoneValidatorResult
      * @throws NetworkException
+     * @throws PcaResponseException
+     * @throws JsonException
      */
-    public function validate(PhoneValidatorArgs $phoneValidatorArgs)
+    public function validate(PhoneValidatorArgs $phoneValidatorArgs): PhoneValidatorResult
     {
-
         $response = $this->networkClient->request(
             PcaPredictUrls::PHONE_VALIDATION,
             $this->credentials,
@@ -65,28 +68,23 @@ class PhoneValidator
             throw new NetworkException($response->getException());
         }
 
-        $json = json_decode($response->getBody());
+        $json = json_decode($response->getBody(), false, 512, JSON_THROW_ON_ERROR);
 
         if (property_exists($json[0], 'Error')) {
             throw new PcaResponseException($json[0]->Error, $json[0]->Description);
         }
 
         $result = new PhoneValidatorResult();
-	    $result->setPhoneNumber($json[0]->PhoneNumber)
-            ->setCountryPrefix((int)$json[0]->CountryPrefix)
-            ->setIsValid($json[0]->IsValid)
-            ->setNationalFormat($json[0]->NationalFormat)
-            ->setNetworkCode($json[0]->NetworkCode)
-            ->setNetworkCountry($json[0]->NetworkCountry)
-            ->setNetworkName($json[0]->NetworkName)
-            ->setNumberType($json[0]->NumberType)
-            ->setValidationSucceeded($json[0]->ValidationSucceeded == "True" ? true : false);
+	    $result->setPhoneNumber($json[0]->PhoneNumber);
+	    $result->setCountryPrefix((int)$json[0]->CountryPrefix);
+	    $result->setIsValid($json[0]->IsValid);
+	    $result->setNationalFormat($json[0]->NationalFormat);
+	    $result->setNetworkCode($json[0]->NetworkCode);
+	    $result->setNetworkCountry($json[0]->NetworkCountry);
+	    $result->setNetworkName($json[0]->NetworkName);
+	    $result->setNumberType($json[0]->NumberType);
+	    $result->setValidationSucceeded($json[0]->ValidationSucceeded === "True");
 
         return $result;
-
     }
-
-
 }
-
-

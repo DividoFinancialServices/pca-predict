@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class RetrieverTest extends TestCase
 {
-    public function testRetrieveResults_ReturnsResults()
+    public function testRetrieveResults_ReturnsResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $retriever = new Retriever($credentials);
@@ -71,11 +71,5 @@ NW1 8AH
 UNITED KINGDOM', $res->getLabel());
         self::assertEquals('Commercial', $res->getType());
         self::assertEquals('Premise', $res->getDataLevel());
-
-
-
     }
-
-
-    
 }

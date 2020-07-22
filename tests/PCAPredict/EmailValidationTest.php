@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class EmailValidationTest extends TestCase
 {
-    public function testRetrieveResults_ReturnsResults()
+    public function testRetrieveResults_ReturnsResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $validator = new EmailValidator($credentials);

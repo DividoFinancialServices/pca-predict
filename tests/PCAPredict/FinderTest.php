@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class FinderTest extends TestCase
 {
-    public function testFindResults_ReturnsResults()
+    public function testFindResults_ReturnsResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
@@ -41,7 +41,7 @@ class FinderTest extends TestCase
         self::assertEquals('London, NW1 8AH', $res[0]->getDescription());
     }
 
-    public function testFindResults_ReturnsMultipleResults()
+    public function testFindResults_ReturnsMultipleResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
@@ -64,7 +64,7 @@ class FinderTest extends TestCase
         self::assertCount(2, $res);
     }
 
-    public function testFindResults_FiltersResults()
+    public function testFindResults_FiltersResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);

@@ -66,11 +66,10 @@ class EmailValidatorArgs
         return $this;
     }
 
-
     /**
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getArgsAsArray()
+    public function getArgsAsArray(): array
     {
         return [
             'Email' => $this->getEmailAddress(),

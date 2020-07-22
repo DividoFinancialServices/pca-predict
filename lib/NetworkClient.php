@@ -5,6 +5,7 @@ namespace Divido\PCAPredict;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
+use JsonException;
 
 /**
  * Class NetworkClient
@@ -23,7 +24,7 @@ class NetworkClient
     /**
      * @param Client $client
      */
-    public function setClient(Client $client)
+    public function setClient(Client $client): void
     {
         $this->client = $client;
     }
@@ -31,7 +32,7 @@ class NetworkClient
     /**
      * @return Client
      */
-    private function getClient()
+    private function getClient(): Client
     {
         if (!$this->client instanceof Client) {
             $this->client = new Client();
@@ -43,14 +44,14 @@ class NetworkClient
     /**
      * @param string $url
      * @param Credentials $credentials
-     * @param array $query
+     * @param array<string, mixed> $query
      * @param string $method
-     * @param array $headers
+     * @param array<string, mixed> $headers
      * @param mixed $payload
      * @return NetworkResponse
      * @internal param string $apiKey
      */
-    public function request(string $url, Credentials $credentials, array $query, string $method, array $headers, $payload = null)
+    public function request(string $url, Credentials $credentials, array $query, string $method, array $headers, $payload = null): NetworkResponse
     {
         $client = $this->getClient();
 
@@ -95,10 +96,9 @@ class NetworkClient
         }
 
         return $networkResponse;
-
     }
 
-    private function catchApiErrorFromResponse(NetworkResponse $networkResponse)
+    private function catchApiErrorFromResponse(NetworkResponse $networkResponse): NetworkResponse
     {
        $json = @json_decode($networkResponse->getBody());
 
@@ -114,6 +114,5 @@ class NetworkClient
        }
 
        return $networkResponse;
-
     }
 }
