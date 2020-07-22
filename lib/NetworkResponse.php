@@ -1,6 +1,8 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
+
+use Exception;
 
 /**
  * Class NetworkResponse
@@ -11,13 +13,12 @@ namespace DividoFinancialServices\PCAPredict;
  */
 class NetworkResponse
 {
-
     /**
      * The HTTP response states.
      */
-    const STATE_SUCCESS = "success";
-    const STATE_FAILED = "failed";
-    const STATE_ERROR = "errpr";
+    public const STATE_SUCCESS = "success";
+    public const STATE_FAILED = "failed";
+    public const STATE_ERROR = "errpr";
 
     /**
      * @var int
@@ -25,7 +26,7 @@ class NetworkResponse
     private $httpStatusCode;
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     private $responseHeaders;
 
@@ -44,14 +45,9 @@ class NetworkResponse
     private $state;
 
     /**
-     * @var \Exception
+     * @var Exception
      */
     private $exception;
-
-    public function __construct()
-    {
-        ;
-    }
 
     /**
      * @return int
@@ -65,14 +61,14 @@ class NetworkResponse
      * @param int $httpStatusCode
      * @return NetworkResponse
      */
-    public function setHttpStatusCode(int $httpStatusCode): ?NetworkResponse
+    public function setHttpStatusCode(int $httpStatusCode): NetworkResponse
     {
         $this->httpStatusCode = $httpStatusCode;
         return $this;
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function getResponseHeaders(): array
     {
@@ -80,10 +76,10 @@ class NetworkResponse
     }
 
     /**
-     * @param array $responseHeaders
+     * @param array<string, mixed> $responseHeaders
      * @return NetworkResponse
      */
-    public function setResponseHeaders(array $responseHeaders): ?NetworkResponse
+    public function setResponseHeaders(array $responseHeaders): NetworkResponse
     {
         $this->responseHeaders = $responseHeaders;
         return $this;
@@ -101,7 +97,7 @@ class NetworkResponse
      * @param string $body
      * @return NetworkResponse
      */
-    public function setBody(string $body): ?NetworkResponse
+    public function setBody(string $body): NetworkResponse
     {
         $this->body = $body;
         return $this;
@@ -119,25 +115,25 @@ class NetworkResponse
      * @param string $state
      * @return NetworkResponse
      */
-    public function setState(string $state): ?NetworkResponse
+    public function setState(string $state): NetworkResponse
     {
         $this->state = $state;
         return $this;
     }
 
     /**
-     * @return \Exception
+     * @return Exception
      */
-    public function getException(): \Exception
+    public function getException(): Exception
     {
         return $this->exception;
     }
 
     /**
-     * @param \Exception $exception
+     * @param Exception $exception
      * @return NetworkResponse
      */
-    public function setException(\Exception $exception): ?NetworkResponse
+    public function setException(Exception $exception): NetworkResponse
     {
         $this->exception = $exception;
         return $this;

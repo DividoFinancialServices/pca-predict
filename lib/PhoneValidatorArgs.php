@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class PhoneValidatorArgs
@@ -24,11 +24,6 @@ class PhoneValidatorArgs
      * @var string
      */
     private $countryCode;
-
-    public function __construct()
-    {
-        ;
-    }
 
     /**
      * @return string
@@ -67,9 +62,9 @@ class PhoneValidatorArgs
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getArgsAsArray()
+    public function getArgsAsArray(): array
     {
         $args = [
             'Phone' => $this->getPhoneNumber(),
@@ -81,7 +76,4 @@ class PhoneValidatorArgs
 
         return $args;
     }
-
 }
-
-

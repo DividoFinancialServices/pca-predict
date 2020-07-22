@@ -1,10 +1,12 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
+use JsonException;
 
 /**
  * Class NetworkClient
@@ -15,32 +17,25 @@ use GuzzleHttp\Psr7\Request;
  */
 class NetworkClient
 {
-
     /**
-     * @var Client|mixed
+     * @var Client
      */
     private $client;
 
-    public function __construct()
-    {
-        ;
-    }
-
     /**
-     * @param $client
+     * @param Client $client
      */
-    public function setClient($client)
+    public function setClient(Client $client): void
     {
         $this->client = $client;
     }
 
     /**
-     * @return Client|mixed
+     * @return Client
      */
-    private function getClient()
+    private function getClient(): Client
     {
-        if (!$this->client)
-        {
+        if (!$this->client instanceof Client) {
             $this->client = new Client();
         }
 
@@ -50,14 +45,14 @@ class NetworkClient
     /**
      * @param string $url
      * @param Credentials $credentials
-     * @param array $query
+     * @param array<string, mixed> $query
      * @param string $method
-     * @param array $headers
-     * @param null $payload
+     * @param array<string, mixed> $headers
+     * @param mixed $payload
      * @return NetworkResponse
      * @internal param string $apiKey
      */
-    public function request(string $url, Credentials $credentials, array $query, string $method, array $headers, $payload = null)
+    public function request(string $url, Credentials $credentials, array $query, string $method, array $headers, $payload = null): NetworkResponse
     {
         $client = $this->getClient();
 
@@ -69,7 +64,7 @@ class NetworkClient
                     [
                         'Key' => $credentials->getApiKey(),
                     ]
-                ),null, "&", PHP_QUERY_RFC3986
+                ),'', "&", PHP_QUERY_RFC3986
             ),
             $headers
         );
@@ -96,16 +91,15 @@ class NetworkClient
                 ->setException($e)
                 ->setState(NetworkResponse::STATE_FAILED)
                 ->setResponseHeaders($e->getResponse()->getHeaders());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $networkResponse->setException($e)
                 ->setState(NetworkResponse::STATE_ERROR);
         }
 
         return $networkResponse;
-
     }
 
-    private function catchApiErrorFromResponse(NetworkResponse $networkResponse)
+    private function catchApiErrorFromResponse(NetworkResponse $networkResponse): NetworkResponse
     {
        $json = @json_decode($networkResponse->getBody());
 
@@ -115,12 +109,11 @@ class NetworkClient
             && count($json->Items) === 1
             && property_exists($json->Items[0], "Error"))
        {
-           $exception = new \Exception(json_encode($json->Items[0]));
+           $exception = new Exception(json_encode($json->Items[0], JSON_THROW_ON_ERROR));
            $networkResponse->setState(NetworkResponse::STATE_FAILED)
                ->setException($exception);
        }
 
        return $networkResponse;
-
     }
 }

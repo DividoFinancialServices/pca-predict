@@ -1,16 +1,19 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\Tests\PCAPredict;
 
+use Divido\PCAPredict\Credentials;
+use Divido\PCAPredict\EmailValidator;
+use Divido\PCAPredict\EmailValidatorArgs;
+use Divido\PCAPredict\EmailValidatorResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class EmailValidationTest extends \PHPUnit_Framework_TestCase
+class EmailValidationTest extends TestCase
 {
-    public function testRetrieveResults_ReturnsResults()
+    public function testRetrieveResults_ReturnsResults(): void
     {
-
-
         $credentials = new Credentials('testApiKey');
         $validator = new EmailValidator($credentials);
 
@@ -40,12 +43,5 @@ class EmailValidationTest extends \PHPUnit_Framework_TestCase
         self::assertSame(false, $res->getIsComplainerOrFraudRisk());
         self::assertSame(false, $res->getIsDisposableOrTemporary());
         self::assertSame(0.777, $res->getDuration());
-
-
-
-
     }
-
-
-    
 }

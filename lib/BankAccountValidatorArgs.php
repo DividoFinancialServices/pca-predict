@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class BankAccountValidatorArgs
@@ -24,11 +24,6 @@ class BankAccountValidatorArgs
      * @var string
      */
     private $sortCode;
-
-    public function __construct()
-    {
-
-    }
 
     /**
      * @return string
@@ -68,9 +63,9 @@ class BankAccountValidatorArgs
 
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getArgsAsArray()
+    public function getArgsAsArray(): array
     {
         return [
             'AccountNumber' => $this->getAccountNumber(),

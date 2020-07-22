@@ -1,13 +1,18 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\Tests\PCAPredict;
 
+use Divido\PCAPredict\Credentials;
+use Divido\PCAPredict\Finder;
+use Divido\PCAPredict\FinderArgs;
+use Divido\PCAPredict\FinderResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class FinderTest extends \PHPUnit_Framework_TestCase
+class FinderTest extends TestCase
 {
-    public function testFindResults_ReturnsResults()
+    public function testFindResults_ReturnsResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
@@ -34,10 +39,9 @@ class FinderTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('Address', $res[0]->getType());
         self::assertEquals('0-11', $res[0]->getHighlight());
         self::assertEquals('London, NW1 8AH', $res[0]->getDescription());
-
     }
 
-    public function testFindResults_ReturnsMultipleResults()
+    public function testFindResults_ReturnsMultipleResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
@@ -58,11 +62,9 @@ class FinderTest extends \PHPUnit_Framework_TestCase
 
         $res = $finder->find($args);
         self::assertCount(2, $res);
-
-
     }
 
-    public function testFindResults_FiltersResults()
+    public function testFindResults_FiltersResults(): void
     {
         $credentials = new Credentials('testApiKey');
         $finder = new Finder($credentials);
@@ -84,8 +86,5 @@ class FinderTest extends \PHPUnit_Framework_TestCase
 
         $res = $finder->find($args);
         self::assertCount(1, $res);
-
-
     }
-    
 }

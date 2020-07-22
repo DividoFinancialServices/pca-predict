@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class BankAccountValidatorResult
@@ -11,7 +11,6 @@ namespace DividoFinancialServices\PCAPredict;
  */
 class BankAccountValidatorResult
 {
-
     /**
      * @var bool
      */
@@ -103,14 +102,6 @@ class BankAccountValidatorResult
     private $chapsSupported;
 
     /**
-     * BankAccountValidatorResult constructor.
-     */
-    public function __construct()
-    {
-        ;
-    }
-
-    /**
      * @return bool
      */
     public function getIsCorrect(): bool
@@ -120,9 +111,9 @@ class BankAccountValidatorResult
 
     /**
      * @param bool $isCorrect
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setIsCorrect(bool $isCorrect): ?BankAccountValidatorResult
+    public function setIsCorrect(bool $isCorrect): self
     {
         $this->isCorrect = $isCorrect;
         return $this;
@@ -138,9 +129,9 @@ class BankAccountValidatorResult
 
     /**
      * @param bool $isDirectDebitCapable
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setIsDirectDebitCapable(bool $isDirectDebitCapable): ?BankAccountValidatorResult
+    public function setIsDirectDebitCapable(bool $isDirectDebitCapable): self
     {
         $this->isDirectDebitCapable = $isDirectDebitCapable;
         return $this;
@@ -156,9 +147,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $statusInformation
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setStatusInformation(string $statusInformation): ?BankAccountValidatorResult
+    public function setStatusInformation(string $statusInformation): self
     {
         $this->statusInformation = $statusInformation;
         return $this;
@@ -174,9 +165,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $correctedSortCode
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setCorrectedSortCode(string $correctedSortCode): ?BankAccountValidatorResult
+    public function setCorrectedSortCode(string $correctedSortCode): self
     {
         $this->correctedSortCode = $correctedSortCode;
         return $this;
@@ -192,9 +183,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $correctedAccountNumber
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setCorrectedAccountNumber(string $correctedAccountNumber): ?BankAccountValidatorResult
+    public function setCorrectedAccountNumber(string $correctedAccountNumber): self
     {
         $this->correctedAccountNumber = $correctedAccountNumber;
         return $this;
@@ -210,9 +201,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $iban
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setIban(string $iban): ?BankAccountValidatorResult
+    public function setIban(string $iban): self
     {
         $this->iban = $iban;
         return $this;
@@ -228,9 +219,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $bank
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setBank(string $bank): ?BankAccountValidatorResult
+    public function setBank(string $bank): self
     {
         $this->bank = $bank;
         return $this;
@@ -246,9 +237,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $bankBic
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setBankBic(string $bankBic): ?BankAccountValidatorResult
+    public function setBankBic(string $bankBic): self
     {
         $this->bankBic = $bankBic;
         return $this;
@@ -264,9 +255,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $branch
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setBranch(string $branch): ?BankAccountValidatorResult
+    public function setBranch(string $branch): self
     {
         $this->branch = $branch;
         return $this;
@@ -282,9 +273,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $branchBic
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setBranchBic(string $branchBic): ?BankAccountValidatorResult
+    public function setBranchBic(string $branchBic): self
     {
         $this->branchBic = $branchBic;
         return $this;
@@ -302,7 +293,7 @@ class BankAccountValidatorResult
      * @param string $contactAddressLine1
      * @return BankAccountValidatorResult
      */
-    public function setContactAddressLine1(string $contactAddressLine1): ?BankAccountValidatorResult
+    public function setContactAddressLine1(string $contactAddressLine1): BankAccountValidatorResult
     {
         $this->contactAddressLine1 = $contactAddressLine1;
         return $this;
@@ -318,9 +309,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $contactAddressLine2
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setContactAddressLine2(string $contactAddressLine2): ?BankAccountValidatorResult
+    public function setContactAddressLine2(string $contactAddressLine2): self
     {
         $this->contactAddressLine2 = $contactAddressLine2;
         return $this;
@@ -336,9 +327,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $contactPostTown
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setContactPostTown(string $contactPostTown): ?BankAccountValidatorResult
+    public function setContactPostTown(string $contactPostTown): self
     {
         $this->contactPostTown = $contactPostTown;
         return $this;
@@ -354,9 +345,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $contactPostcode
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setContactPostcode(string $contactPostcode): ?BankAccountValidatorResult
+    public function setContactPostcode(string $contactPostcode): self
     {
         $this->contactPostcode = $contactPostcode;
         return $this;
@@ -372,9 +363,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $contactPhone
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setContactPhone(string $contactPhone): ?BankAccountValidatorResult
+    public function setContactPhone(string $contactPhone): self
     {
         $this->contactPhone = $contactPhone;
         return $this;
@@ -390,9 +381,9 @@ class BankAccountValidatorResult
 
     /**
      * @param string $contactFax
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setContactFax(string $contactFax): ?BankAccountValidatorResult
+    public function setContactFax(string $contactFax): self
     {
         $this->contactFax = $contactFax;
         return $this;
@@ -408,9 +399,9 @@ class BankAccountValidatorResult
 
     /**
      * @param bool $fasterPaymentsSupported
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setFasterPaymentsSupported(bool $fasterPaymentsSupported): ?BankAccountValidatorResult
+    public function setFasterPaymentsSupported(bool $fasterPaymentsSupported): self
     {
         $this->fasterPaymentsSupported = $fasterPaymentsSupported;
         return $this;
@@ -426,17 +417,11 @@ class BankAccountValidatorResult
 
     /**
      * @param bool $chapsSupported
-     * @return BankAccountValidatorResult
+     * @return self
      */
-    public function setChapsSupported(bool $chapsSupported): ?BankAccountValidatorResult
+    public function setChapsSupported(bool $chapsSupported): self
     {
         $this->chapsSupported = $chapsSupported;
         return $this;
     }
-
-
-
-
-
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class EmailValidator
@@ -13,7 +13,6 @@ namespace DividoFinancialServices\PCAPredict;
  */
 class EmailValidator
 {
-
     /**
      * PCA Predict API credential(s)
      *
@@ -25,7 +24,6 @@ class EmailValidator
      * @var NetworkClient
      */
     private $networkClient;
-
 
     /**
      * Finder constructor.
@@ -41,7 +39,7 @@ class EmailValidator
     /**
      * @return NetworkClient
      */
-    public function getNetworkClient()
+    public function getNetworkClient(): NetworkClient
     {
         return $this->networkClient;
     }
@@ -49,11 +47,12 @@ class EmailValidator
     /**
      * Query PCA Predict API to validate email address
      *
+     * @param EmailValidatorArgs $emailValidatorArgs
+     * @return EmailValidatorResult
      * @throws NetworkException
      */
-    public function validate(EmailValidatorArgs $emailValidatorArgs)
+    public function validate(EmailValidatorArgs $emailValidatorArgs): EmailValidatorResult
     {
-
         $response = $this->networkClient->request(
             PcaPredictUrls::EMAIL_VALIDATION,
             $this->credentials,
@@ -77,10 +76,5 @@ class EmailValidator
             ->setUserAccount($json[0]->UserAccount);
 
 	    return $result;
-
     }
-
-
 }
-
-

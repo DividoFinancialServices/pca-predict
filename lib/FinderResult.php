@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class FinderResult
@@ -57,7 +57,7 @@ class FinderResult
      * @param string $id
      * @return FinderResult
      */
-    public function setId(string $id): ?FinderResult
+    public function setId(string $id): FinderResult
     {
         $this->id = $id;
         return $this;
@@ -75,7 +75,7 @@ class FinderResult
      * @param string $type
      * @return FinderResult
      */
-    public function setType(string $type): ?FinderResult
+    public function setType(string $type): FinderResult
     {
         $this->type = $type;
         return $this;
@@ -93,7 +93,7 @@ class FinderResult
      * @param string $text
      * @return FinderResult
      */
-    public function setText(string $text): ?FinderResult
+    public function setText(string $text): FinderResult
     {
         $this->text = $text;
         return $this;
@@ -111,7 +111,7 @@ class FinderResult
      * @param string $highlight
      * @return FinderResult
      */
-    public function setHighlight(string $highlight): ?FinderResult
+    public function setHighlight(string $highlight): FinderResult
     {
         $this->highlight = $highlight;
         return $this;
@@ -129,7 +129,7 @@ class FinderResult
      * @param string $description
      * @return FinderResult
      */
-    public function setDescription(string $description): ?FinderResult
+    public function setDescription(string $description): FinderResult
     {
         $this->description = $description;
         return $this;
