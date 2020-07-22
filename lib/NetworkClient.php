@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
@@ -15,27 +15,21 @@ use GuzzleHttp\Psr7\Request;
  */
 class NetworkClient
 {
-
     /**
-     * @var Client|mixed
+     * @var Client
      */
     private $client;
 
-    public function __construct()
-    {
-        ;
-    }
-
     /**
-     * @param $client
+     * @param Client $client
      */
-    public function setClient($client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
     }
 
     /**
-     * @return Client|mixed
+     * @return Client
      */
     private function getClient()
     {

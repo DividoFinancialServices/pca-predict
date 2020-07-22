@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class EmailValidatorResult
@@ -87,7 +87,7 @@ class EmailValidatorResult
     }
 
     /**
-     * @param string $resonseMessage
+     * @param string $responseMessage
      * @return EmailValidatorResult
      */
     public function setResponseMessage(string $responseMessage): ?EmailValidatorResult

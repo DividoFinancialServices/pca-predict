@@ -1,11 +1,16 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\Tests\PCAPredict;
 
+use Divido\PCAPredict\BankAccountValidator;
+use Divido\PCAPredict\BankAccountValidatorArgs;
+use Divido\PCAPredict\BankAccountValidatorResult;
+use Divido\PCAPredict\Credentials;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class BankAccountValidationTest extends \PHPUnit_Framework_TestCase
+class BankAccountValidationTest extends TestCase
 {
     public function testRetrieveResults_ReturnsResults()
     {
@@ -49,17 +54,5 @@ class BankAccountValidationTest extends \PHPUnit_Framework_TestCase
         self::assertSame(true, $res->getIsCorrect());
         self::assertSame(true, $res->getIsDirectDebitCapable());
         self::assertSame('CautiousOK', $res->getStatusInformation());
-
-
-
-
-
-
-
-
-
     }
-
-
-    
 }

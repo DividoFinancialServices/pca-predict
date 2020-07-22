@@ -1,11 +1,15 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\Tests\PCAPredict;
 
+use Divido\PCAPredict\Credentials;
+use Divido\PCAPredict\Retriever;
+use Divido\PCAPredict\RetrieveResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class RetrieverTest extends \PHPUnit_Framework_TestCase
+class RetrieverTest extends TestCase
 {
     public function testRetrieveResults_ReturnsResults()
     {

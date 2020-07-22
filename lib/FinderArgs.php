@@ -1,6 +1,6 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\PCAPredict;
 
 /**
  * Class FindArgs
@@ -17,11 +17,10 @@ class FinderArgs
      * The Web Service definition of `Type` inside the complex object `Capture_Interactive_Find_v1_00_Results`
      *
      */
-    const FILTER_TYPE_LOCALITY = "Locality";
-    const FILTER_TYPE_STREET = "Street";
-    const FILTER_TYPE_ADDRESS = "Address";
-    const FILTER_TYPE_BUILDING_NAME = "BuildingName";
-
+    public const FILTER_TYPE_LOCALITY = "Locality";
+    public const FILTER_TYPE_STREET = "Street";
+    public const FILTER_TYPE_ADDRESS = "Address";
+    public const FILTER_TYPE_BUILDING_NAME = "BuildingName";
 
     /**
      * The search term to find.
@@ -141,7 +140,7 @@ class FinderArgs
     }
 
     /**
-     * @return \string[]
+     * @return array<string>
      */
     public function getCountries(): array
     {
@@ -149,7 +148,7 @@ class FinderArgs
     }
 
     /**
-     * @param \string[] $countries
+     * @param array<string> $countries
      * @return FinderArgs
      */
     public function setCountries(array $countries): ?FinderArgs
@@ -195,7 +194,7 @@ class FinderArgs
     }
 
     /**
-     * @return \string[]
+     * @return array<string>
      */
     public function getTypeFilter():  ?array
     {
@@ -203,7 +202,7 @@ class FinderArgs
     }
 
     /**
-     * @param \string[] $typeFilter
+     * @param array<string> $typeFilter
      * @return FinderArgs
      */
     public function setTypeFilter(array $typeFilter): ?FinderArgs

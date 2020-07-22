@@ -1,16 +1,19 @@
 <?php
 
-namespace DividoFinancialServices\PCAPredict;
+namespace Divido\Tests\PCAPredict;
 
+use Divido\PCAPredict\Credentials;
+use Divido\PCAPredict\PhoneValidator;
+use Divido\PCAPredict\PhoneValidatorArgs;
+use Divido\PCAPredict\PhoneValidatorResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class PhoneValidationTest extends \PHPUnit_Framework_TestCase
+class PhoneValidationTest extends TestCase
 {
     public function testRetrieveResults_ReturnsResults()
     {
-
-
         $credentials = new Credentials('testApiKey');
         $validator = new PhoneValidator($credentials);
 
